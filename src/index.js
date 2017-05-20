@@ -93,8 +93,75 @@ class ResultsRouter extends React.Component {
 					actors: 5,
 					rating: 5
 				}
-			]
+			],
+			newMovie: {
+				title: '',
+				genre: '',
+				year: '',
+				actors: '',
+				rating: 'PG'
+			}
 		}
+	}
+
+	handleAddMovieChange = (e) => {
+		switch (e.target.id) {
+			case 'movie-title':
+				this.setState({
+					newMovie: {
+						...this.state.newMovie,
+						title: e.target.value
+					}
+				})
+				break
+			case 'genre':
+				this.setState({
+					newMovie: {
+						...this.state.newMovie,
+						genre: e.target.value
+					}
+				})
+				break
+			case 'year':
+				this.setState({
+					newMovie: {
+						...this.state.newMovie,
+						year: parseInt(e.target.value)
+					}
+				})
+				break
+			case 'actors':
+				this.setState({
+					newMovie: {
+						...this.state.newMovie,
+						actors: e.target.value
+					}
+				})
+				break
+			case 'rating':
+				this.setState({
+					newMovie: {
+						...this.state.newMovie,
+						rating: e.target.value
+					}
+				})
+				break
+		}
+	}
+
+	handleAddMovieSubmit = (e) => {
+		e.preventDefault()
+		console.log(e.target)
+		this.setState((prevState) => ({
+			movies: prevState.movies.concat(prevState.newMovie),
+			newMovie: {
+				title: '',
+				genre: '',
+				year: '',
+				actors: '',
+				rating: 'PG'
+			}
+		}))
 	}
 
 	render() {
@@ -102,7 +169,7 @@ class ResultsRouter extends React.Component {
 	   		 <Router>
 	   			 <Switch>
 	   				 <Route path="/search" render={() => <SearchResults movies={this.state.movies} />} />
-	   				 <Route path="/list" render={() => <MovieList movies={this.state.movies} />} />
+	   				 <Route path="/list" render={() => <MovieList movies={this.state.movies} onChange={this.handleAddMovieChange} onSubmit={this.handleAddMovieSubmit} value={this.state.newMovie} />} />
 	   			 </Switch>
 	   		 </Router>
    	 	)
@@ -146,41 +213,45 @@ const MovieList = (props) => {
 				          			<span aria-hidden="true">&times;</span>
 				        		</button>
 				      		</div>
-				      		<div className="modal-body">
-								<form>
+							<form onSubmit={props.onSubmit} >
+				      			<div className="modal-body">
           							<div className="form-group">
 							            <label htmlFor="movie-title" className="form-control-label">Movie Title:</label>
-							            <input type="text" className="form-control" id="movie-title" />
+							            <input required type="text" className="form-control" id="movie-title" onChange={props.onChange} value={props.value.title} />
 							        </div>
 									<div className="form-group">
 							            <label htmlFor="genre" className="form-control-label">Genre:</label>
-							            <input type="text" className="form-control" id="genre" />
+							            <input required type="text" className="form-control" id="genre" onChange={props.onChange} value={props.value.genre} />
 							        </div>
 									<div className="form-group">
 							            <label htmlFor="year" className="form-control-label">Year Released:</label>
-							            <input type="number" className="form-control" id="year" />
+							            <input required type="number" className="form-control" id="year" onChange={props.onChange} value={props.value.year} />
 							        </div>
 									<div className="form-group">
 							            <label htmlFor="actors" className="form-control-label">Leading Actors:</label>
-							            <input type="text" className="form-control" id="actors" />
+							            <input required type="text" className="form-control" id="actors" onChange={props.onChange} value={props.value.actors} />
 							        </div>
 									<div className="form-group">
 							            <label htmlFor="rating" className="form-control-label">Movie Rating:</label>
 										<select className="form-control custom-select"
 											id="rating"
-											defaultValue="pg" >
-											<option value="g">G</option>
-											<option value="pg">PG</option>
-											<option value="pg13">PG-13</option>
-											<option value="r">R</option>
+
+											required
+											onChange={props.onChange}
+											value={props.value.rating}>
+											<option value="G">G</option>
+											<option value="PG">PG</option>
+											<option value="PG-13">PG-13</option>
+											<option value="R">R</option>
 										</select>
 							        </div>
-        						</form>
-				      		</div>
-				      		<div className="modal-footer">
-				        		<button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-				        		<button type="button" className="btn btn-primary">Save changes</button>
-				      		</div>
+					      		</div>
+					      		<div className="modal-footer">
+					        		<button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
+					        		<button type="submit" className="btn btn-primary" data-toggle="modal"
+										data-target="#addNewMovieModal">Add Movie</button>
+					      		</div>
+							</form>
 				    	</div>
 				  	</div>
 				</div>
