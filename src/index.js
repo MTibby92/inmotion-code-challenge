@@ -132,22 +132,50 @@ const MovieList = (props) => {
 					<MovieCard key={i} data={movie} />
 				)}
 
-				<button type="button" className="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-				  Launch demo modal
+				<button type="button" className="btn btn-primary" data-toggle="modal" data-target="#addNewMovieModal">
+					Add New Movie
 				</button>
 
 
-				<div className="modal fade" id="myModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+				<div className="modal fade" id="addNewMovieModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 					<div className="modal-dialog" role="document">
 						<div className="modal-content">
 							<div className="modal-header">
-				        		<h5 className="modal-title" id="exampleModalLabel">Modal title</h5>
+				        		<h5 className="modal-title" id="exampleModalLabel">Add New Movie</h5>
 				        		<button type="button" className="close" data-dismiss="modal" aria-label="Close">
 				          			<span aria-hidden="true">&times;</span>
 				        		</button>
 				      		</div>
 				      		<div className="modal-body">
-				        		...
+								<form>
+          							<div className="form-group">
+							            <label htmlFor="movie-title" className="form-control-label">Movie Title:</label>
+							            <input type="text" className="form-control" id="movie-title" />
+							        </div>
+									<div className="form-group">
+							            <label htmlFor="genre" className="form-control-label">Genre:</label>
+							            <input type="text" className="form-control" id="genre" />
+							        </div>
+									<div className="form-group">
+							            <label htmlFor="year" className="form-control-label">Year Released:</label>
+							            <input type="number" className="form-control" id="year" />
+							        </div>
+									<div className="form-group">
+							            <label htmlFor="actors" className="form-control-label">Leading Actors:</label>
+							            <input type="text" className="form-control" id="actors" />
+							        </div>
+									<div className="form-group">
+							            <label htmlFor="rating" className="form-control-label">Movie Rating:</label>
+										<select className="form-control custom-select"
+											id="rating"
+											defaultValue="pg" >
+											<option value="g">G</option>
+											<option value="pg">PG</option>
+											<option value="pg13">PG-13</option>
+											<option value="r">R</option>
+										</select>
+							        </div>
+        						</form>
 				      		</div>
 				      		<div className="modal-footer">
 				        		<button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
