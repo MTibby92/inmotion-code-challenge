@@ -35,8 +35,8 @@ const SearchContainer = (props) => {
 				<select className="custom-select mb-2 mr-sm-2 mb-sm-0"
 					id="movieSearchDropdown"
 					defaultValue={props.selectValue}
-					onChange={props.onSelectChange}>
-					<option value="title" >Title</option>
+					onChange={props.onSelectChange} >
+					<option value="title">Title</option>
 					<option value="genre">Genre</option>
 					<option value="year">Year</option>
 				</select>
@@ -53,15 +53,60 @@ const SearchContainer = (props) => {
 	will never be displayed at the same time. The Index route will only have
 	the search bar
 */
-const ResultsRouter = (props) => {
-	 return (
-		 <Router>
-			 <Switch>
-				 <Route path="/search" component={SearchResults} />
-				 <Route path="/list" component={MovieList} />
-			 </Switch>
-		 </Router>
-	 )
+class ResultsRouter extends React.Component {
+	constructor(props) {
+		super(props)
+		this.state = {
+			movies: [
+				{
+					title: 1,
+					genre: 1,
+					year: 1990,
+					actors: 1,
+					rating: 1
+				},
+				{
+					title: 2,
+					genre: 2,
+					year: 1995,
+					actors: 2,
+					rating: 2
+				},
+				{
+					title: 3,
+					genre: 3,
+					year: 2000,
+					actors: 3,
+					rating: 3
+				},
+				{
+					title: 4,
+					genre: 4,
+					year: 2005,
+					actors: 4,
+					rating: 4
+				},
+				{
+					title: 5,
+					genre: 5,
+					year: 2005,
+					actors: 5,
+					rating: 5
+				}
+			]
+		}
+	}
+
+	render() {
+		return (
+	   		 <Router>
+	   			 <Switch>
+	   				 <Route path="/search" render={() => <SearchResults movies={this.state.movies} />} />
+	   				 <Route path="/list" render={() => <MovieList movies={this.state.movies} />} />
+	   			 </Switch>
+	   		 </Router>
+   	 	)
+	}
  }
 
 const SearchResults = (props) => {
@@ -75,12 +120,34 @@ const SearchResults = (props) => {
 }
 
 
+/*
+	component that contains all movie cards, it's state contains all the data
+	pertaining to the movies in the collection
+*/
 const MovieList = (props) => {
 	return (
 		<div className="row">
 			<div className="col-sm-8">
-				<h3>Movie List goes here</h3>
+				{props.movies.map((movie, i) =>
+					<MovieCard key={i} data={movie} />
+				)}
 			</div>
+		</div>
+	)
+}
+
+
+/*
+	component that displays each individual movie and it's data
+*/
+const MovieCard = (props) => {
+	return(
+		<div className="card">
+			<p>{props.data.title}</p>
+			<p>{props.data.genre}</p>
+			<p>{props.data.year}</p>
+			<p>{props.data.actors}</p>
+			<p>{props.data.rating}</p>
 		</div>
 	)
 }
@@ -126,7 +193,8 @@ class App extends React.Component {
 	render() {
 		return (
 			<div className="container">
-				<SearchContainer onInputChange={this.handleSearchInputChange}
+				<SearchContainer
+					onInputChange={this.handleSearchInputChange}
 					inputValue={this.state.searchQuery}
 					selectValue={this.state.searchType}
 				 	onSelectChange={this.handleSearchSelectChange}
@@ -136,5 +204,43 @@ class App extends React.Component {
 		)
 	}
 }
+
+const data = [
+	{
+		title: 1,
+		genre: 1,
+		year: 1990,
+		actors: 1,
+		rating: 1
+	},
+	{
+		title: 2,
+		genre: 2,
+		year: 1995,
+		actors: 2,
+		rating: 2
+	},
+	{
+		title: 3,
+		genre: 3,
+		year: 2000,
+		actors: 3,
+		rating: 3
+	},
+	{
+		title: 4,
+		genre: 4,
+		year: 2005,
+		actors: 4,
+		rating: 4
+	},
+	{
+		title: 5,
+		genre: 5,
+		year: 2005,
+		actors: 5,
+		rating: 5
+	},
+]
 
 ReactDOM.render(<App />, document.getElementById('root'))
