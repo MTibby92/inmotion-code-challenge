@@ -194,10 +194,13 @@ const SearchResults = (props) => {
 const MovieList = (props) => {
 	return (
 		<div className="row">
-			<div className="col-sm-8">
-				{props.movies.map((movie, i) =>
-					<MovieCard key={i} data={movie} />
-				)}
+			<div className="col-sm-6 offset-sm-3">
+				<h2 className="text-center" style={{marginBottom: '1rem'}} >My Movie List</h2>
+				<div className="" >
+					{props.movies.map((movie, i) =>
+						<MovieCard key={i} data={movie} />
+					)}
+				</div>
 
 				<button type="button" className="btn btn-primary" data-toggle="modal" data-target="#addNewMovieModal">
 					Add New Movie
@@ -270,12 +273,15 @@ const MovieList = (props) => {
 */
 const MovieCard = (props) => {
 	return(
-		<div className="card">
-			<p>{props.data.title}</p>
-			<p>{props.data.genre}</p>
-			<p>{props.data.year}</p>
-			<p>{props.data.actors}</p>
-			<p>{props.data.rating}</p>
+		<div className="card" style={{marginBottom: '1rem'}}>
+			{/* <img className="card-img" src="http://placehold.it/200x100"/> */}
+			<div className="card-block">
+				<h4 className="card-title" >Title: {props.data.title}</h4>
+				<p className="card-text" >Genre: {props.data.genre}</p>
+				<p className="card-text" >Release Year: {props.data.year}</p>
+				<p className="card-text" >Lead Actors: {props.data.actors}</p>
+				<p className="card-text" >Rating: {props.data.rating}</p>
+			</div>
 		</div>
 	)
 }
