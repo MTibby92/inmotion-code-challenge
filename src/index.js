@@ -131,7 +131,36 @@ const MovieList = (props) => {
 				{props.movies.map((movie, i) =>
 					<MovieCard key={i} data={movie} />
 				)}
+
+				<button type="button" className="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+				  Launch demo modal
+				</button>
+
+
+				<div className="modal fade" id="myModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+					<div className="modal-dialog" role="document">
+						<div className="modal-content">
+							<div className="modal-header">
+				        		<h5 className="modal-title" id="exampleModalLabel">Modal title</h5>
+				        		<button type="button" className="close" data-dismiss="modal" aria-label="Close">
+				          			<span aria-hidden="true">&times;</span>
+				        		</button>
+				      		</div>
+				      		<div className="modal-body">
+				        		...
+				      		</div>
+				      		<div className="modal-footer">
+				        		<button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
+				        		<button type="button" className="btn btn-primary">Save changes</button>
+				      		</div>
+				    	</div>
+				  	</div>
+				</div>
+
 			</div>
+
+
+
 		</div>
 	)
 }
@@ -204,43 +233,5 @@ class App extends React.Component {
 		)
 	}
 }
-
-const data = [
-	{
-		title: 1,
-		genre: 1,
-		year: 1990,
-		actors: 1,
-		rating: 1
-	},
-	{
-		title: 2,
-		genre: 2,
-		year: 1995,
-		actors: 2,
-		rating: 2
-	},
-	{
-		title: 3,
-		genre: 3,
-		year: 2000,
-		actors: 3,
-		rating: 3
-	},
-	{
-		title: 4,
-		genre: 4,
-		year: 2005,
-		actors: 4,
-		rating: 4
-	},
-	{
-		title: 5,
-		genre: 5,
-		year: 2005,
-		actors: 5,
-		rating: 5
-	},
-]
 
 ReactDOM.render(<App />, document.getElementById('root'))
