@@ -6,6 +6,7 @@ import {
     Link,
 	Switch
 } from 'react-router-dom'
+import PropTypes from 'prop-types'
 
 
 /*
@@ -61,9 +62,10 @@ class SearchContainer extends React.Component {
 		)
 	}
 }
+// needed this feature to be able to redirect to /search from SearchContainer's handle click function
 SearchContainer.contextTypes = {
-	router: React.PropTypes.shape({
-	    history: React.PropTypes.object.isRequired,
+	router: PropTypes.shape({
+	    history: PropTypes.object.isRequired,
 	  })
 }
 
