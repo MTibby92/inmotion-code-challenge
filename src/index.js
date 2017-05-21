@@ -81,39 +81,39 @@ class ResultsRouter extends React.Component {
 		this.state = {
 			movies: [
 				{
-					title: 1,
-					genre: 1,
-					year: 1990,
-					actors: 1,
-					rating: 1
+					title: 'The Shawshank Redemption',
+					genre: 'Drama',
+					year: 1994,
+					actors: 'Tim Robbins, Morgan Freeman, Bob Gunton',
+					rating: 'R'
 				},
 				{
-					title: 2,
-					genre: 2,
-					year: 1995,
-					actors: 2,
-					rating: 2
+					title: 'The Dark Knight',
+					genre: 'Action',
+					year: 2008,
+					actors: 'Christian Bale, Heath Ledger, Aaron Eckhart',
+					rating: 'PG-13'
 				},
 				{
-					title: 3,
-					genre: 3,
-					year: 2000,
-					actors: 3,
-					rating: 3
+					title: 'The Lord of the Rings',
+					genre: 'Adventure',
+					year: 2003,
+					actors: 'Elijah Wood, Viggo Mortensen, Ian McKellen',
+					rating: 'PG-13'
 				},
 				{
-					title: 4,
-					genre: 4,
-					year: 2005,
-					actors: 4,
-					rating: 4
+					title: 'Forrest Gump',
+					genre: 'Comedy',
+					year: 1994,
+					actors: 'Tom Hanks, Robin Wright, Gary Sinise',
+					rating: 'PG-13'
 				},
 				{
-					title: 5,
-					genre: 5,
-					year: 2005,
-					actors: 5,
-					rating: 5
+					title: 'Back to the Future',
+					genre: 'Adventure',
+					year: 1985,
+					actors: 'Michael J. Fox, Christopher Lloyd, Lea Thompson',
+					rating: 'PG'
 				}
 			],
 			newMovie: {
