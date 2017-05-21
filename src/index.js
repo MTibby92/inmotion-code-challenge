@@ -130,7 +130,6 @@ class ResultsRouter extends React.Component {
 	}
 
 	handleSearchInputChange = (e) => {
-		console.log(e.target.value)
 		this.setState({
 			searchData: {
 				...this.state.searchData,
@@ -140,7 +139,6 @@ class ResultsRouter extends React.Component {
 	}
 
 	handleSearchSelectChange = (e) => {
-		console.log(e.target.value)
 		this.setState({
 			searchData: {
 				...this.state.searchData,
@@ -157,35 +155,27 @@ class ResultsRouter extends React.Component {
 		let query = this.state.searchData
 		switch(query.searchType) {
 			case 'title':
-				console.log('Made it to title switch')
 				movies.map((movie) => {
 					if(movie.title == query.searchQuery) {
 						tempSearchResults.push(movie)
 					}
 				})
-
-				console.log(tempSearchResults)
 				break
 			case 'genre':
-				console.log('Made it to genre switch')
 				movies.map((movie) => {
 					if(movie.genre == query.searchQuery) {
 						tempSearchResults.push(movie)
 					}
 				})
-				console.log(tempSearchResults)
 				break
 			case 'year':
-				console.log('Made it to year switch')
 				movies.map((movie) => {
 					if(movie.year == query.searchQuery) {
 						tempSearchResults.push(movie)
 					}
 				})
-				console.log(tempSearchResults)
 				break
 			default:
-				console.log('default')
 				return
 		}
 		this.setState({
