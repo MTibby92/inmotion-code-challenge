@@ -41,7 +41,9 @@ const SearchContainer = (props) => {
 					<option value="year">Year</option>
 				</select>
 
-				<button type="submit" className="btn btn-primary" >Search</button>
+				<button type="submit" className="btn btn-primary" >
+					Search
+				</button>
 			</form>
 		</div>
 	)
