@@ -164,12 +164,30 @@ class ResultsRouter extends React.Component {
 		}))
 	}
 
+	handleMovieDelete = (e) => {
+		let removeIndex = parseInt(e.target.getAttribute('data-index'))
+		this.setState((prevState) => ({
+		    movies: prevState.movies.filter((_,i) => i !== removeIndex)
+		}))
+	}
+
+	handleMovieEdit = (e) => {
+		console.log(e.target)
+		console.log(e.target.getAttribute('data-index'))
+	}
+
 	render() {
 		return (
 	   		 <Router>
 	   			 <Switch>
 	   				 <Route path="/search" render={() => <SearchResults movies={this.state.movies} />} />
-	   				 <Route path="/list" render={() => <MovieList movies={this.state.movies} onChange={this.handleAddMovieChange} onSubmit={this.handleAddMovieSubmit} value={this.state.newMovie} />} />
+	   				 <Route path="/list" render={() =>
+						 <MovieList movies={this.state.movies}
+							 onChange={this.handleAddMovieChange}
+							 onSubmit={this.handleAddMovieSubmit}
+							 onDelete={this.handleMovieDelete}
+							 onEdit={this.handleMovieEdit}
+							 value={this.state.newMovie} />} />
 	   			 </Switch>
 	   		 </Router>
    	 	)
@@ -198,7 +216,7 @@ const MovieList = (props) => {
 				<h2 className="text-center" style={{marginBottom: '1rem'}} >My Movie List</h2>
 				<div className="" >
 					{props.movies.map((movie, i) =>
-						<MovieCard key={i} data={movie} />
+						<MovieCard key={i} index={i} data={movie} onDelete={props.onDelete} onEdit={props.onEdit} onCardSubmit={props.onCardSubmit} />
 					)}
 				</div>
 
@@ -277,10 +295,13 @@ const MovieCard = (props) => {
 			{/* <img className="card-img" src="http://placehold.it/200x100"/> */}
 			<div className="card-block">
 				<h4 className="card-title" >Title: {props.data.title}</h4>
+				<hr/>
 				<p className="card-text" >Genre: {props.data.genre}</p>
 				<p className="card-text" >Release Year: {props.data.year}</p>
 				<p className="card-text" >Lead Actors: {props.data.actors}</p>
 				<p className="card-text" >Rating: {props.data.rating}</p>
+				<button className="btn btn-primary" data-index={props.index} onClick={props.onEdit} >Edit</button>
+				<button className="btn btn-danger ml-2" data-index={props.index} onClick={props.onDelete} >Delete</button>
 			</div>
 		</div>
 	)
