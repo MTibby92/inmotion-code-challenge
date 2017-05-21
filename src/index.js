@@ -126,7 +126,7 @@ class ResultsRouter extends React.Component {
 				this.setState({
 					newMovie: {
 						...this.state.newMovie,
-						year: parseInt(e.target.value)
+						year: parseInt(e.target.value, 10)
 					}
 				})
 				break
@@ -146,12 +146,12 @@ class ResultsRouter extends React.Component {
 					}
 				})
 				break
+			default: return
 		}
 	}
 
 	handleAddMovieSubmit = (e) => {
 		e.preventDefault()
-		console.log(e.target)
 		this.setState((prevState) => ({
 			movies: prevState.movies.concat(prevState.newMovie),
 			newMovie: {
@@ -165,12 +165,13 @@ class ResultsRouter extends React.Component {
 	}
 
 	handleMovieDelete = (e) => {
-		let removeIndex = parseInt(e.target.getAttribute('data-index'))
+		let removeIndex = parseInt(e.target.getAttribute('data-index'), 10)
 		this.setState((prevState) => ({
 		    movies: prevState.movies.filter((_,i) => i !== removeIndex)
 		}))
 	}
 
+	// currently not using yet, will come back to if there's time
 	handleMovieEdit = (e) => {
 		console.log(e.target)
 		console.log(e.target.getAttribute('data-index'))
@@ -180,6 +181,7 @@ class ResultsRouter extends React.Component {
 		return (
 	   		 <Router>
 	   			 <Switch>
+					 <Route exact path="/" component={ShowListButton} />
 	   				 <Route path="/search" render={() => <SearchResults movies={this.state.movies} />} />
 	   				 <Route path="/list" render={() =>
 						 <MovieList movies={this.state.movies}
@@ -193,6 +195,21 @@ class ResultsRouter extends React.Component {
    	 	)
 	}
  }
+
+
+const ShowListButton = (props) => {
+	return (
+		<div className="row">
+			<div className="col-sm-2 offset-sm-5">
+				<button className="btn">
+					<Link to="/list">View List of Movies</Link>
+				</button>
+			</div>
+		</div>
+
+	)
+}
+
 
 const SearchResults = (props) => {
 	return (
@@ -300,7 +317,7 @@ const MovieCard = (props) => {
 				<p className="card-text" >Release Year: {props.data.year}</p>
 				<p className="card-text" >Lead Actors: {props.data.actors}</p>
 				<p className="card-text" >Rating: {props.data.rating}</p>
-				<button className="btn btn-primary" data-index={props.index} onClick={props.onEdit} >Edit</button>
+				{/* <button className="btn btn-primary" data-index={props.index} onClick={props.onEdit} >Edit</button> */}
 				<button className="btn btn-danger ml-2" data-index={props.index} onClick={props.onDelete} >Delete</button>
 			</div>
 		</div>
