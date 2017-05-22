@@ -42,9 +42,9 @@ const MovieList = (props) => {
 					search route */}
 				{props.pageTitle == 'My Movie List' ? (
 					<div className="col-sm-4 offset-sm-4">
-					<button type="button" className="btn btn-primary" data-toggle="modal" data-target="#addNewMovieModal">
-						Add New Movie
-					</button>
+						<button type="button" className="btn btn-primary" data-toggle="modal" data-target="#addNewMovieModal">
+							Add New Movie
+						</button>
 					</div>
 				) : (
 					null
