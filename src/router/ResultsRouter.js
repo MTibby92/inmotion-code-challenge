@@ -93,7 +93,8 @@ export default class ResultsRouter extends React.Component {
 
 	handleSearchSubmit = (e) => {
 		// this is where either the route redirect will happen using withRouter
-		// and history.push() or a state change to display the results
+		// and history.push() or a state change to display the results, only accepts
+        // exact matches between search term and movie value
 		let tempSearchResults = []
 		let movies = this.state.movies
 		let query = this.state.searchData
