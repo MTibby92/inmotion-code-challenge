@@ -31,7 +31,7 @@ const MovieList = (props) => {
 						<MovieCard key={i}
 							index={i}
 							data={movie}
-							componentType={props.componentType}
+							pageTitle={props.pageTitle}
 							onDelete={props.onDelete}
 							onEdit={props.onEdit}
 							onCardSubmit={props.onCardSubmit} />

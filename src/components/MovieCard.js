@@ -18,7 +18,7 @@ const MovieCard = (props) => {
 				{/* <button className="btn btn-primary" data-index={props.index} onClick={props.onEdit} >Edit</button> */}
 
 				{/* only render delete button if it's part of the full movie list */}
-				{props.componentType == 'Movie List' ? (
+				{props.pageTitle == 'My Movie List' ? (
 					<button className="btn btn-danger ml-2" data-index={props.index} onClick={props.onDelete} >Delete</button>
 				) : (
 					null

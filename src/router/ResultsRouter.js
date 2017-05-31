@@ -212,22 +212,17 @@ export default class ResultsRouter extends React.Component {
 	   		 <Router>
 				 <div className="container">
 					 <SearchContainer
-	 					onInputChange={this.handleSearchInputChange}
-	 					inputValue={this.state.searchData.searchQuery}
-	 					selectValue={this.state.searchData.searchType}
-	 				 	onSelectChange={this.handleSearchSelectChange}
-	 					onSubmit={this.handleSearchSubmit} />
-					<Switch>
+                         onInputChange={this.handleSearchInputChange}
+                         inputValue={this.state.searchData.searchQuery}
+                         selectValue={this.state.searchData.searchType}
+                         onSelectChange={this.handleSearchSelectChange}
+                         onSubmit={this.handleSearchSubmit} />
+                     <Switch>
 	   					 <Route exact path="/" component={ShowListButton} />
 	   	   				 <Route path="/search" render={() =>
-							 <MovieList movies={this.state.searchResults}
-								 onChange={this.handleAddMovieChange}
-								 onSubmit={this.handleAddMovieSubmit}
-								 onDelete={this.handleMovieDelete}
-								 onEdit={this.handleMovieEdit}
-								 pageTitle="Search Results"
-								 componentType="Search Results"
-								 value={this.state.newMovie} />} />
+							 <MovieList
+								 movies={this.state.searchResults}
+								 pageTitle="Search Results" />} />
 	   	   				 <Route path="/list" render={() =>
 	   						 <MovieList movies={this.state.movies}
 	   							 onChange={this.handleAddMovieChange}
@@ -235,7 +230,6 @@ export default class ResultsRouter extends React.Component {
 	   							 onDelete={this.handleMovieDelete}
 	   							 onEdit={this.handleMovieEdit}
 								 pageTitle="My Movie List"
-								 componentType="Movie List"
 	   							 value={this.state.newMovie} />} />
 	   	   			 </Switch>
 				 </div>
